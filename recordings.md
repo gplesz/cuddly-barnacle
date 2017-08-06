@@ -33,7 +33,7 @@ Hogy még egyszerűbb legyen Elek élete, a tanfolyam elején a beépített idő
 #### Modul vége, tanfolyam vége
 
 ### Gyakorlott tanár tanfolyamot tart
-Kala Pál
+Kala Pál, Pofá Zoltán
 
 
 
