@@ -1,11 +1,29 @@
 # A felvételek kezelése a tanfolyami oldalról
 
+## Szereplők
+
+### Remek Elek
+Kezdő tanéár a NetAcadémiánál, első tanfolyamát tartja nálunk balkezes avókádófarmerek párválasztási szokásairól, nem igazán technikai ember.
+
+### Pofá Zoltán
+Rutinos vén róka, sokadik tanfolyamát tolja.
+
+### Kala Pál
+A chat masterünk
+
+### Meg Győző
+Az adminisztrátor, aki végül mindenről tud és mindent megold.
+
+### Minden Áron
+A technikai segítség, aki ha egy tanfolyammal gondok merülnek fel, ugrik, repül, földet ér és segít.
+
 ## Forgatókönyvek
 
 ### Kezdő tanár tanfolyamot tart
+Remek Elek az első alkalommal nagy erőkkel készül a saját szerepére. Így is épp elég nagy a nyomás, a technikai részt szükséges rossznak veszi, ami érthetően kevéssé érdekli.
 
 #### Tanfolyam kezdete előtt
-Remek Elek az első alkalommal nagy erőkkel készül a saját szerepére. Így is épp elég nagy a nyomás, a technikai részt szükséges rossznak veszi, ami érthetően kevéssé érdekli. Az első lépést azért megteszi (megnyitja a tanfolyami élő adás oldalt), onnantól viszont könnyen beszippanthatja az időgép. Ilyenkor a segédeszközök feladata, hogy támogassák az esendő embert.
+ Az első lépést azért megteszi (megnyitja a tanfolyami élő adás oldalt), onnantól viszont könnyen beszippanthatja az időgép. Ilyenkor a segédeszközök feladata, hogy támogassák az esendő embert.
 
 Ha a közvetítés nincs elindítva, akkor az élő adás oldalon egy feltűnő felirat jelzi, hogy a közvetítés nincs elindítva. A felirat után pedig a link egy tanároknak szóló oldalra visz, ahol a leírás található, hogy lehet elindítani a felvételt.
 
@@ -82,16 +100,10 @@ A felvett anyag sorsáról pedig a felvételt lezőártát követő képernyőn 
 ![Felvétel elkészült, megtartjuk](/img/04-felvetel-utan-megtartjuk.png)
 
 ### Gyakorlott tanár tanfolyamot tart
-Pofá Zoltán, 
-
-Ezt még ki kell dolgozni.
-
-### További szereplők forgatókönyvei
-#### Chat master
+Pofá Zoltán
+### Chat master
 Kala Pál
-#### Admin
+### Admin
 Meg Győző
 
-
-
-
+Ezet még ki kell dolgozni.
