@@ -105,7 +105,7 @@ Visszaszámlálással vagy anélkül, Elek a következő rész kezdetekor elind�
 Mivel az óra véget ért, a felvételt Elek szintén a nagy piros gombbal állítja meg:
 ![Van adás, felvétel elindítva](/img/03-van-adas-van-felvetel.png)
 
-A felvett anyag sorsáról pedig a felvételt lezőártát követő képernyőn tud Elek dönteni:
+A felvett anyag sorsáról pedig a felvételt lezártát követő képernyőn tud Elek dönteni:
 
 ![Felvétel elkészült, megtartjuk](/img/04-felvetel-utan-megtartjuk.png)
 
