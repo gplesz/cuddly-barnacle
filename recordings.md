@@ -74,6 +74,7 @@ A felvett anyag sorsáról pedig a felvételt lezőártát követő képernyőn 
 
 ### Gyakorlott tanár tanfolyamot tart
 Kala Pál, Pofá Zoltán, Meg Győző, Minden Áron
+
 Ezt még ki kell dolgozni.
 
 
