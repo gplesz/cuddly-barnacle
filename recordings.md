@@ -42,11 +42,15 @@ Lehetőségek: a tanár elindítja a felvételt, majd frissíti az oldalt. Így 
 ![Van adás nincs felvétel](/img/02-van-adas-nincs-felvetel.png)
 Az oldalon már a következő feladat látszik: a tanfolyam kezdetekor el kell indítani a felvételt. Ezt Elek megteheti a nagy villogó piros gombbal. 
 
-*Megjegyzés*: Hogy még egyszerűbb legyen Elek élete, a tanfolyam elején a beépített időzített indító másodpercre pontosan elindíthatja automatikusan a felvételt.
+*Megjegyzés*: Célszerű egy visszaszámoló mechanizmust beépíteni az oldalba Elek számára, hogy a a nagy izgalomban a pontos kezdéshez legyen segítsége. Az utolsó másodpercekben esetleg hangjelzéssel, az utolsó kettő-öt másodpercre visszanémulva. Ez a visszaszámoló mechanizmus Elek visszanéző oldalán futhat, a többi szerver funkciótól függetlenül, azokat kiegészítendő. 
 
-*Megjegyzés*: Ehhez célszerű egy visszaszámoló mechanizmust beépíteni az oldalba a tanárnak. Az utolsó másodpercekben esetleg hangjelzéssel, az utolsó kettő-öt másodpercre visszanémulva.
+*Megjegyzés*: Hogy még egyszerűbb legyen Elek élete, a tanfolyam elején a szerverbe beépített időzített indító másodpercre pontosan elindíthatja automatikusan a felvételt. Ezt az automatikus indítást célszerű a szerverről vezérelni, a megjelenített weboldalaktól függetlenül.
 
-*Megjegyzés*: Ha visszaszámoló mechanizmusunk van, akkor gondoskodni kell az időszinkronról a szerver és a weboldal között.
+*Technikai megjegyzés*: Mivel több (sok) tanfolyamot kell "fejben" tartani, érdemes az időzítő mechanizmust precízen tervezni. Egy jó megoldás a szerveren futó időzítésekhez a [Hangfire](https://www.hangfire.io/) ingyenes változata, ami nyílt forráskódú és nuget-tel egyszerűen telepíthető. Ezzel például megoldható az, hogy amikor egy-egy modul kezdési időpontját berögzítjük az Admin felületen, azonnal létrehozza az akár hónapokkal későbbi rögzítési időpontot, amit szerver újraindításkor/frissítéskor/stb. sem felejt el, mivel az SQL szerveren automatikusan tárolja.
+
+*Megjegyzés*: A visszaszámolást és/vagy az automatikus felvétel indítást kikapcsolható módon is el lehet készíteni, vagy később a kikapcsolhatóságot beépíteni.
+
+*Technikai megjegyzés*: Ha visszaszámoló mechanizmusunk van, akkor gondoskodni kell az időszinkronról a szerver és a weboldal között (például SignalR push üzenetekkel percenként).
 
 *Megjegyzés*: ha a tanfolyamról nem készül felvétel, akkor ezt a mechanizmust és a piros gombot letilthatóvá kell tenni a tanfolyami beállítások oldalán.
 
@@ -74,7 +78,11 @@ Ebben az esetben a felvétel címét kötelező kitölteni, ha kell, akkor a mod
 
 ###### A felvétel csak teszt volt
 ![Felvétel elkészült, de nem tartjuk meg](/img/05-felvetel-utan-nem-tartjuk-meg.png)
-Elek csak bohóckodott a kamera előtt otthon, hogy szokja a kamerát és a lámpalázával küzdjön. Ebben az esetben Elek a második lehetőséget választva jelzi a rendszernek, hogy ez a felvétel nem kerülhet a tanfolyami videók közé.
+Elek csak bohóckodott a kamera előtt otthon, hogy szokja a kamerát és a lámpalázával küzdjön. Ebben az esetben Elek a második lehetőséget választva jelzi a rendszernek, hogy ez a felvétel nem kerülhet a tanfolyami videók közé. 
+
+Ezzel a rögzített videót nem töröljük, csak szerver oldalon jelezzük, hogy a videót nem kell kitenni a tanfolyami oldalra. 
+
+*Technikai megjegyzés*: A felvett videó tehát megmarad ilyenkor is (jelenleg a Wowza szerveren) egy mappában, és a wowza szerveren futó automatizmus egy beállított idő letelte (mondjuk például 2 hét) után automatikusan törli, ha addig nem volt rá szükség.
 
 *Megjegyzés*: A mezőnevek és gombok feliratai "kitalálás alatt" vannak, ezek helyett lehet jobbat is alkalmazni.
 
