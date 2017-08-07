@@ -58,13 +58,13 @@ A piros gombot megnyomva (vagy a visszaszámolást követően) elindul az tanór
 A modul végén Elek leállítja a felvételt a nagy piros gombbal. 
 ![Van adás, felvétel elindítva](/img/03-van-adas-van-felvetel.png)
 
-*Megjegyzés*: Amennyiben a közvetítésben tudjuk figyelni a hangot valamilyen mechanizmussal (nem triviális feladat, példák: [csendfelismerés](https://stackoverflow.com/questions/19353/detecting-audio-silence-in-wav-files-using-c-sharp), [csendfelismerés2](https://stackoverflow.com/questions/43058522/detect-silence-from-microphone), [csendfelismerés3](https://stackoverflow.com/questions/24037814/identify-silence-packet-in-byte-array-naudio), [csendfelismerés4](https://stackoverflow.com/questions/13043732/using-naudio-for-net-how-do-i-remove-the-silence-wave-at-the-end-of-mp3-file)), akkor be tudunk egy figyelő szervizt állítani, ami nézi a folyamatban lévő stream-eket, és riaszt, ha valahol elhallgat.
+*Technikai megjegyzés*: Amennyiben a közvetítésben tudjuk figyelni a hangot valamilyen mechanizmussal (nem triviális feladat, példák: [csendfelismerés](https://stackoverflow.com/questions/19353/detecting-audio-silence-in-wav-files-using-c-sharp), [csendfelismerés2](https://stackoverflow.com/questions/43058522/detect-silence-from-microphone), [csendfelismerés3](https://stackoverflow.com/questions/24037814/identify-silence-packet-in-byte-array-naudio), [csendfelismerés4](https://stackoverflow.com/questions/13043732/using-naudio-for-net-how-do-i-remove-the-silence-wave-at-the-end-of-mp3-file)), akkor be tudunk egy figyelő szervizt állítani, ami nézi a folyamatban lévő stream-eket, és riaszt, ha valahol elhallgat.
 
 A következő feladat két lépésből áll. 
 
 ##### A felvétel sorsa
 
-A felvételhez meg kell adni a végleges adatokat, amivel bekerül a többi közé, és az adatok alapján automatizmus feltölti a wowza szerverről a Vimeo-ra, és beilleszti a tanfolyami videók közé a megfelelő helyre.
+A felvételhez meg kell adni a végleges adatokat, amivel bekerül a többi közé, és az adatok alapján a Wowza szerveren futó automatizmus feltölti a wowza szerverről a Vimeo-ra, és beilleszti a tanfolyami videók közé a megfelelő helyre.
 
 Ehhez a képernyőn a felvétel lezárása után következő lehetőségek közül kell tudnunk választani:
 
