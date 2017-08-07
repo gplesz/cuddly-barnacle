@@ -11,9 +11,16 @@ Ha a közvetítés nincs elindítva, akkor az élő adás oldalon egy feltűnő 
 
 ![Nincs még elindítva a felétel](/img/01-nincs-adas.png)
 
+Még jobb, ha a teljes élő adás oldalt beborítjuk a felirattal, hogy egyértelmű legyen minden kezdő tanárnak, hogy ezt meg kell oldani azonnal.
+
+![Nincs még elindítva a felétel](/img/01b-nincs-adas.png)
+
 Lehetőségek: a tanár elindítja a felvételt, majd frissíti az oldalt. Így eljutunk a következő ponthoz.
 
 *Megjegyzés*: Esetleg az oldalfrissítést is érdemes beleírni a piros szövegbe.
+*Technikai megjegyzés*: A közvetítés elindítását -jelenleg- az OBS-ben kell elvégezni, és vagy onnan vagy a Wowza API-ból értesülhetünk a megtörténtéről. Egyik sem fogja értesíteni a pedellust, így annyit tudunk tenni, hogy amíg a felvétel nem indult el, addig a pedellus időnként (5-10 másodpercenként) lekérdezi a Wowza API-t, és ha elindult a felvétel, akkor SignalR-rel push értesítést küldünk a weboldalnak, így nem kell az oldalt frissíteni.
+
+*Megjegyzés*: Érdemes megfontolni, hogy ha a tanfolyami időpont előtt nem indult el a felvétel, akkor valamilyen értesítési e-mail-t küldeni (mondjuk Minden Áron-nak), Áron aztán segíthet Eleknek elindítani a felvételt.
 
 ![Van adás nincs felvétel](/img/02-van-adas-nincs-felvetel.png)
 Az oldalon már a következő feladat látszik: a tanfolyam kezdetekor el kell indítani a felvételt. Ezt Elek megteheti a nagy villogó piros gombbal. 
@@ -31,8 +38,10 @@ Az oldalon már a következő feladat látszik: a tanfolyam kezdetekor el kell i
 A piros gombot megnyomva (vagy a visszaszámolást követően) elindul az tanóra, elindul a felvétel. Elek leadja az első részt, jó esetben belefeledkezve a mondandójába, a technikai környezetről elfeledkezve. 
 
 #### modul vége
-A modul végén Elek leállítja a felvételt a nagy piros gpmbbal. 
+A modul végén Elek leállítja a felvételt a nagy piros gombbal. 
 ![Van adás, felvétel elindítva](/img/03-van-adas-van-felvetel.png)
+
+*Megjegyzés*: Amennyiben a közvetítésben tudjuk figyelni a hangot valamilyen mechanizmussal (nem triviális feladat, példák: [csendfelismerés](https://stackoverflow.com/questions/19353/detecting-audio-silence-in-wav-files-using-c-sharp), [csendfelismerés2](https://stackoverflow.com/questions/43058522/detect-silence-from-microphone), [csendfelismerés3](https://stackoverflow.com/questions/24037814/identify-silence-packet-in-byte-array-naudio), [csendfelismerés4](https://stackoverflow.com/questions/13043732/using-naudio-for-net-how-do-i-remove-the-silence-wave-at-the-end-of-mp3-file)), akkor be tudunk egy figyelő szervizt állítani, ami nézi a folyamatban lévő stream-eket, és riaszt, ha valahol elhallgat.
 
 A következő feladat két lépésből áll. 
 
@@ -71,14 +80,16 @@ A felvett anyag sorsáról pedig a felvételt lezőártát követő képernyőn 
 
 ![Felvétel elkészült, megtartjuk](/img/04-felvetel-utan-megtartjuk.png)
 
-
 ### Gyakorlott tanár tanfolyamot tart
-Kala Pál, Pofá Zoltán, Meg Győző, Minden Áron
+Pofá Zoltán, 
 
 Ezt még ki kell dolgozni.
 
-
-
+### További szereplők forgatókönyvei
+#### Chat master
+Kala Pál
+#### Admin
+Meg Győző
 
 
 
