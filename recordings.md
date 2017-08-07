@@ -26,9 +26,7 @@ Remek Elek az első alkalommal nagy erőkkel készül a saját szerepére. Így 
  Az első lépést azért megteszi (megnyitja a tanfolyami élő adás oldalt), onnantól viszont könnyen beszippanthatja az időgép. Ilyenkor a segédeszközök feladata, hogy támogassák az esendő embert.
 
 Ha a közvetítés nincs elindítva, akkor az élő adás oldalon egy feltűnő felirat jelzi, hogy a közvetítés nincs elindítva. A felirat után pedig a link egy tanároknak szóló oldalra visz, ahol a leírás található, hogy lehet elindítani a felvételt.
-
 ![Nincs még elindítva a felétel](/img/01-nincs-adas.png)
-
 Még jobb, ha a teljes élő adás oldalt beborítjuk a felirattal, hogy egyértelmű legyen minden kezdő tanárnak, hogy ezt meg kell oldani azonnal.
 
 ![Nincs még elindítva a felétel](/img/01b-nincs-adas.png)
@@ -37,7 +35,7 @@ Lehetőségek: a tanár elindítja a felvételt, majd frissíti az oldalt. Így 
 
 *Megjegyzés*: Esetleg az oldalfrissítést is érdemes beleírni a piros szövegbe.
 
-*Technikai megjegyzés*: A közvetítés elindítását -jelenleg- az OBS-ben kell elvégezni, és vagy onnan vagy a Wowza API-ból értesülhetünk a megtörténtéről. Egyik sem fogja értesíteni a pedellust, így annyit tudunk tenni, hogy amíg a felvétel nem indult el, addig a pedellus időnként (5-10 másodpercenként) lekérdezi a Wowza API-t, és ha elindult a felvétel, akkor SignalR-rel push értesítést küldünk a weboldalnak, így nem kell az oldalt frissíteni.
+*Technikai megjegyzés*: A közvetítés elindítását -jelenleg- az OBS-ben kell elvégezni, és vagy onnan vagy a Wowza API-ból értesülhetünk a megtörténtéről. Egyik sem fogja értesíteni a pedellust, így annyit tudunk tenni, hogy amíg a felvétel nem indult el, addig a pedellus időnként (5-10 másodpercenként) lekérdezi a Wowza API-t, és ha elindult a felvétel, akkor SignalR-rel push értesítést küldünk a weboldalnak, így nem kell az oldalt frissíteni. Ezt a poll-push mechanizmust ki is szervezhetjük a Pedellus-ból egy külön szervizbe, akár a wowzára.
 
 *Megjegyzés*: Érdemes megfontolni, hogy ha a tanfolyami időpont előtt nem indult el a felvétel, akkor valamilyen értesítési e-mail-t küldeni (mondjuk Minden Áron-nak), Áron aztán segíthet Eleknek elindítani a felvételt.
 
