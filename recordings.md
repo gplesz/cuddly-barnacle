@@ -18,6 +18,7 @@ Még jobb, ha a teljes élő adás oldalt beborítjuk a felirattal, hogy egyért
 Lehetőségek: a tanár elindítja a felvételt, majd frissíti az oldalt. Így eljutunk a következő ponthoz.
 
 *Megjegyzés*: Esetleg az oldalfrissítést is érdemes beleírni a piros szövegbe.
+
 *Technikai megjegyzés*: A közvetítés elindítását -jelenleg- az OBS-ben kell elvégezni, és vagy onnan vagy a Wowza API-ból értesülhetünk a megtörténtéről. Egyik sem fogja értesíteni a pedellust, így annyit tudunk tenni, hogy amíg a felvétel nem indult el, addig a pedellus időnként (5-10 másodpercenként) lekérdezi a Wowza API-t, és ha elindult a felvétel, akkor SignalR-rel push értesítést küldünk a weboldalnak, így nem kell az oldalt frissíteni.
 
 *Megjegyzés*: Érdemes megfontolni, hogy ha a tanfolyami időpont előtt nem indult el a felvétel, akkor valamilyen értesítési e-mail-t küldeni (mondjuk Minden Áron-nak), Áron aztán segíthet Eleknek elindítani a felvételt.
