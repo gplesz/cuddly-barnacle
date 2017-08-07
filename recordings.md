@@ -3,7 +3,7 @@
 ## Szereplők
 
 ### Remek Elek
-Kezdő tanéár a NetAcadémiánál, első tanfolyamát tartja nálunk balkezes avókádófarmerek párválasztási szokásairól, nem igazán technikai ember.
+Kezdő tanár a NetAcadémiánál, első tanfolyamát tartja nálunk balkezes avókádófarmerek párválasztási szokásairól, nem igazán technikai ember.
 
 ### Pofá Zoltán
 Rutinos vén róka, sokadik tanfolyamát tolja.
