@@ -44,6 +44,10 @@ Az oldalon már a következő feladat látszik: a tanfolyam kezdetekor el kell i
 
 *Megjegyzés*: Célszerű egy visszaszámoló mechanizmust beépíteni az oldalba Elek számára, hogy a a nagy izgalomban a pontos kezdéshez legyen segítsége. Az utolsó másodpercekben esetleg hangjelzéssel, az utolsó kettő-öt másodpercre visszanémulva. Ez a visszaszámoló mechanizmus Elek visszanéző oldalán futhat, a többi szerver funkciótól függetlenül, azokat kiegészítendő. 
 
+Esetleg valami ilyesmit: 
+![Van adás nincs felvétel visszaszámolás](/img/02b-van-adas-nincs-felvetel.png)
+
+
 *Megjegyzés*: Hogy még egyszerűbb legyen Elek élete, a tanfolyam elején a szerverbe beépített időzített indító másodpercre pontosan elindíthatja automatikusan a felvételt. Ezt az automatikus indítást célszerű a szerverről vezérelni, a megjelenített weboldalaktól függetlenül.
 
 *Technikai megjegyzés*: Mivel több (sok) tanfolyamot kell "fejben" tartani, érdemes az időzítő mechanizmust precízen tervezni. Egy jó megoldás a szerveren futó időzítésekhez a [Hangfire](https://www.hangfire.io/) ingyenes változata, ami nyílt forráskódú és nuget-tel egyszerűen telepíthető. Ezzel például megoldható az, hogy amikor egy-egy modul kezdési időpontját berögzítjük az Admin felületen, azonnal létrehozza az akár hónapokkal későbbi rögzítési időpontot, amit szerver újraindításkor/frissítéskor/stb. sem felejt el, mivel az SQL szerveren automatikusan tárolja.
