@@ -138,6 +138,8 @@ B->A: közvetítés leállítása az OBS-ben
 
 a "nincs sor" azt jelenti, hogy nincs olyan sor, amiben a felvétel elindult, de nem állt meg és nincs is lezárva.
 
+a van sor azt jelenti, hogy van elindított de nem lezárt és nem leállított felvétel.
+
  -----------------------
  |felvételek           |
  -----------------------
