@@ -109,6 +109,64 @@ A felvett anyag sorsáról pedig a felvételt lezártát követő képernyőn tu
 
 ![Felvétel elkészült, megtartjuk](/img/04-felvetel-utan-megtartjuk.png)
 
+*Technikai megjegyzés*: A felvételnek a következő állapotai vannak: 
+- (A) nincs közvetítés, (nincs folyamatban felvétel) és nincs előző felvétel (leállított és lezáratlan)
+- (B) van közvetítés, nincs folyamatban felvétel, nincs előző felvétel (leállított és lezáratlan)
+- (C) van közvetítés, van folyamatban felvétel, (nincs előző felvétel (leállított és lezáratlan))
+- (D) (vagy van vagy nincs közvetítés) nincs folyamatban felvétel és van előző felvétel ((leállított és lezáratlan)
+
+                        -<<-
+                        |  |        <---tanóra vége
+                        ˇ  ^
+      itt kezdődik -->  A->B->C->D
+                           ^     ˇ
+                           |     |  <---Az egyes részei a tanórának
+                           --<<---  <---itt vagy megtartjuk vagy nem a felvételt, így zárjuk le
+
+Ezek az állapotok nem írják le az összes lehetséges kombinációt, de csak ezek az állapot átmenetek lehetségesek, ennek *nagy részét* a felületen keresztül mi szabályozzuk. (A közvetítés indítása nem a mi asztalunk)
+
+A->B: közvetítés elindítása az OBS-ben
+B->C: felvétel elindítása (nagy piros gomb vagy időzítő)
+C->D: felvétel leállítása (nagy piros gomb)
+D->B: felvétel lezárása (címmel, modul kiválasztásával, ha megtartjuk, vagy nem tarjuk meg)
+B->A: közvetítés leállítása az OBS-ben
+
+(A): nincs sor a felvételek táblában és nem megy a közvetítés
+(B): nincs sor a felvételek táblában és megy a közvetítés
+(C): van sor a felvételek táblában, a felvétel elindult, de nem állt meg
+(D): van sor a felvételek táblában, a felvétel elindult, megállt, de nincs lezárva
+
+a "nincs sor" azt jelenti, hogy nincs olyan sor, amiben a felvétel elindult, de nem állt meg és nincs is lezárva.
+
+ -----------------------
+ |felvételek           |
+ -----------------------
+ | ID                  | <-(B->C)
+ | tanfolyam           | <-(B->C)
+ | (wowza) file név    | <-(B->C)
+ | felvétel állapota   | <-(B->C, C->D, D->B)
+    { 
+      elindítva, 
+      leállítva, 
+      lezárva (nem kell megtartani), 
+      lezárva (meg kell tartani),
+      feltöltés elindítva, 
+      feltöltés sikertelen,
+      feltöltés sikeres,
+      törölve 
+    } 
+ | nem kell megtartani | <-(D->B) vagy ez
+ | felvétel címe       | <-(D->B) vagy ezek
+ | modul neve          | <-(D->B) vagy ezek
+ | VimeoID             | <-kitölve, ha feltöltöttük a vimeóra
+ | feltöltés eredménye | <-jelzi, hogy milyen hiba történt (hibak)
+
+*Megjegyzés*: érdemes végiggondolni, hogy a folyamat egyes időpontjait milyen részletességgel naplózzuk. Lehet, hogy kell egy naplótábla, az egyes események időpontjával.
+
+*Technikai megjegyzés*: ennek a táblának van egy operatív és egy historikus szerepe, ezért ha nagyon sok felvétel készül, akkor a teljesítmény optimalizálása céljából az aktív rekordokat érdemes a táblában tartani, a lezártakat kimásolni egy másik táblába.
+
+*Fontos Megjegyzés*: ha a közvetítés a C/D állapotokban leáll, attól még az állapot most nem változik. A későbbiekben egy automatizmust beállíthatunk, hogy ilyen esetben automatikusan álljon le a felvétel.
+
 ### Gyakorlott tanár tanfolyamot tart
 Pofá Zoltán
 ### Chat master
@@ -116,4 +174,4 @@ Kala Pál
 ### Admin
 Meg Győző
 
-Ezet még ki kell dolgozni.
+Ezt még ki kell dolgozni.
