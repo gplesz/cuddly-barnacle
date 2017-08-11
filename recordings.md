@@ -86,7 +86,7 @@ Elek csak bohóckodott a kamera előtt otthon, hogy szokja a kamerát és a lám
 
 Ezzel a rögzített videót nem töröljük, csak szerver oldalon jelezzük, hogy a videót nem kell kitenni a tanfolyami oldalra. 
 
-*Technikai megjegyzés*: A felvett videó tehát megmarad ilyenkor is (jelenleg a Wowza szerveren) egy mappában, és a wowza szerveren futó automatizmus egy beállított idő letelte (mondjuk például 2 hét) után automatikusan törli, ha addig nem volt rá szükség.
+*Technikai megjegyzés*: A felvett videó tehát megmarad ilyenkor is (jelenleg a Wowza szerveren) egy mappában, és a wowza szerveren futó automatizmus egy beállított idő letelte (mondjuk például 2 hét) után automatikusan törli, ha addig nem volt rá szükség. Esetleg a törlés előtt küldhetünk e-mailt az adminisztrátornak, hogy nézzen rá még egyszer, hogy biztosan nem kell-e a felvétel.
 
 *Megjegyzés*: A mezőnevek és gombok feliratai "kitalálás alatt" vannak, ezek helyett lehet jobbat is alkalmazni.
 
@@ -125,49 +125,51 @@ A felvett anyag sorsáról pedig a felvételt lezártát követő képernyőn tu
 
 Ezek az állapotok nem írják le az összes lehetséges kombinációt, de csak ezek az állapot átmenetek lehetségesek, ennek *nagy részét* a felületen keresztül mi szabályozzuk. (A közvetítés indítása nem a mi asztalunk)
 
-A->B: közvetítés elindítása az OBS-ben
-B->C: felvétel elindítása (nagy piros gomb vagy időzítő)
-C->D: felvétel leállítása (nagy piros gomb)
-D->B: felvétel lezárása (címmel, modul kiválasztásával, ha megtartjuk, vagy nem tarjuk meg)
-B->A: közvetítés leállítása az OBS-ben
+átmenet | magyarázat 
+:---: | ---
+A->B | közvetítés elindítása az OBS-ben
+B->C | felvétel elindítása (nagy piros gomb vagy időzítő)
+C->D | felvétel leállítása (nagy piros gomb)
+D->B | felvétel lezárása (címmel, modul kiválasztásával, ha megtartjuk, vagy nem tarjuk meg)
+B->A | közvetítés leállítása az OBS-ben
 
-(A): nincs sor a felvételek táblában és nem megy a közvetítés
-(B): nincs sor a felvételek táblában és megy a közvetítés
-(C): van sor a felvételek táblában, a felvétel elindult, de nem állt meg
-(D): van sor a felvételek táblában, a felvétel elindult, megállt, de nincs lezárva
+státusz | magyarázat
+:---: | :---
+A | nincs sor a felvételek táblában és nem megy a közvetítés
+B | nincs sor a felvételek táblában és megy a közvetítés
+C | van sor a felvételek táblában, a felvétel elindult, de nem állt meg
+D | van sor a felvételek táblában, a felvétel elindult, megállt, de nincs lezárva
 
 a "nincs sor" azt jelenti, hogy nincs olyan sor, amiben a felvétel elindult, de nem állt meg és nincs is lezárva.
 
 a van sor azt jelenti, hogy van elindított de nem lezárt és nem leállított felvétel.
 
- -----------------------
- |felvételek           |
- -----------------------
- | ID                  | <-(B->C)
- | tanfolyam           | <-(B->C)
- | (wowza) file név    | <-(B->C)
- | felvétel állapota   | <-(B->C, C->D, D->B)
-    { 
-      elindítva, 
-      leállítva, 
-      lezárva (nem kell megtartani), 
-      lezárva (meg kell tartani),
-      feltöltés elindítva, 
-      feltöltés sikertelen,
-      feltöltés sikeres,
-      törölve 
-    } 
- | nem kell megtartani | <-(D->B) vagy ez
- | felvétel címe       | <-(D->B) vagy ezek
- | modul neve          | <-(D->B) vagy ezek
- | VimeoID             | <-kitölve, ha feltöltöttük a vimeóra
- | feltöltés eredménye | <-jelzi, hogy milyen hiba történt (hibak)
+A adatbázis tábla logikai terve
+
+Felvételek | Státusz váltás      
+:--- | :--- 
+ID | B->C
+tanfolyam | B->C
+(wowza) file név | B->C
+felvétel állapota `{ elindítva, leállítva, lezárva (nem kell megtartani), lezárva (meg kell tartani), feltöltés elindítva, feltöltés sikertelen,feltöltés sikeres, feltöltés elérhető, állomány törölve }` | B->C, C->D, D->B
+nem kell megtartani | D->B vagy ez
+felvétel címe | D->B vagy ezek
+modul neve | D->B vagy ezek
+VimeoID | kitölve, ha feltöltöttük a vimeóra
+feltöltés eredménye | jelzi, hogy mivel zárult a feltöltés
+konvertálás eredménye | jelzi, hogy mi az utolsó ellenőrző állapota a felvételnek a vimeo-n
 
 *Megjegyzés*: érdemes végiggondolni, hogy a folyamat egyes időpontjait milyen részletességgel naplózzuk. Lehet, hogy kell egy naplótábla, az egyes események időpontjával.
 
 *Technikai megjegyzés*: ennek a táblának van egy operatív és egy historikus szerepe, ezért ha nagyon sok felvétel készül, akkor a teljesítmény optimalizálása céljából az aktív rekordokat érdemes a táblában tartani, a lezártakat kimásolni egy másik táblába.
 
+***Fontos technikai megjegyzés***: A vimeo-ra való feltöltés után nem lehet még törölni az állományt, mert a vimeo vagy átkonvertálja a videót vagy nem. Így a feladat az, hogy feltöltjük a videót, ezt jelezzük a rekordban (feltöltés sikeres), majd csak azután törölhetjük, ha a videó elérhetővé válik a vimeón (feltöltés elérhető), ezt a Vimeo API segítségével le kell tudnunk kérdezni.
+
 *Fontos Megjegyzés*: ha a közvetítés a C/D állapotokban leáll, attól még az állapot most nem változik. A későbbiekben egy automatizmust beállíthatunk, hogy ilyen esetben automatikusan álljon le a felvétel.
+
+***Fontos technikai megjegyzés***: ha a tanár felvétel közben megállítja a közvetítést (vagy lefagy a gépe, vagy az OBS), akkor a wowza szépen lezárja az állományt, amibe felvételt vette, azonban a felvétel nem áll le, hanem vár a közvetítésre. Ha újra elindul a közvetítés, akkor a wowza egy új állományt kezd, és folytatja a felvételt. **Ennek az állománynak a nevét is meg kell szereznünk, és a felvételek közé fel kell vennünk.** Valamint, az előző felvételt el kell tudni nevezni. Nekünk erre a problémára fel kell készülnünk.
+
+Ez előző megjegyzéssel összhangban a legcélszerűbb, ha a pedellus valamilyen formában leállítja a felvételt. Ha a felvételt leállítjuk, akkor a közvetítési oldal a D állapotnak megfelelő formában várja, hogy a lezárt felvételnek mi lesz a sorsa. Ha ezt megadtuk, újraindíthatjuk a felvételt.
 
 ### Gyakorlott tanár tanfolyamot tart
 Pofá Zoltán
