@@ -179,3 +179,8 @@ Kala Pál
 Meg Győző
 
 Ezt még ki kell dolgozni.
+
+### todo
+- tag-ek írása a videókhoz
+- a feltöltés a tanárhoz is tartozzon
+
